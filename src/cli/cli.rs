@@ -9,9 +9,9 @@ const SORT_OPTIONS: &[&str] = &["brightness", "luminance", "hue", "chroma", "ran
 const DEFAULT_SORT_ORDER: &str = "hue";
 
 pub fn build_cli() -> App<'static, 'static> {
-    let color_arg = Arg::with_name("color")
-        .help(
-            "Colors can be specified in many different formats, such as #RRGGBB, RRGGBB, \
+  let color_arg = Arg::with_name("color")
+    .help(
+      "Colors can be specified in many different formats, such as #RRGGBB, RRGGBB, \
              #RGB, 'rgb(…, …, …)', 'hsl(…, …, …)', 'gray(…)' or simply by the name of the \
              color. The identifier '-' can be used to read a single color from standard input. \
              Also, the special identifier 'pick' can be used to run an external color picker \
@@ -25,21 +25,21 @@ pub fn build_cli() -> App<'static, 'static> {
              \n  - 'rgb(119, 136, 153)'\
              \n  - '119,136,153'\
              \n  - 'hsl(210, 14.3%, 53.3%)'",
-        )
-        .required(false)
-        .multiple(true);
+    )
+    .required(false)
+    .multiple(true);
 
-    let colorspace_arg = Arg::with_name("colorspace")
-        .long("colorspace")
-        .short("s")
-        .value_name("name")
-        .help("The colorspace in which to interpolate")
-        .possible_values(&["Lab", "LCh", "RGB", "HSL"])
-        .case_insensitive(true)
-        .default_value("Lab")
-        .required(true);
+  let colorspace_arg = Arg::with_name("colorspace")
+    .long("colorspace")
+    .short("s")
+    .value_name("name")
+    .help("The colorspace in which to interpolate")
+    .possible_values(&["Lab", "LCh", "RGB", "HSL"])
+    .case_insensitive(true)
+    .default_value("Lab")
+    .required(true);
 
-    App::new(crate_name!())
+  App::new(crate_name!())
         .version(crate_version!())
         .global_setting(AppSettings::ColorAuto)
         .global_setting(AppSettings::ColoredHelp)
@@ -481,6 +481,14 @@ pub fn build_cli() -> App<'static, 'static> {
             SubCommand::with_name("colorcheck")
                 .about("Check if your terminal emulator supports 24-bit colors.")
                 .setting(AppSettings::Hidden),
+        )
+        .subcommand(
+            SubCommand::with_name("imas")
+                .about("Get a Im@s idol's image color from im@sparql.")
+                .long_about("Get a Im@s idol's image color from im@sparql.\n\n\
+                Example:\n  \
+                  pastel imas Kisaragi_Chihaya")
+                .arg(color_arg.clone()),
         )
         .arg(
             Arg::with_name("color-mode")

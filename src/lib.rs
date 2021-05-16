@@ -6,6 +6,7 @@ mod helper;
 pub mod named;
 pub mod parser;
 pub mod random;
+pub mod structs;
 mod types;
 
 use std::fmt;

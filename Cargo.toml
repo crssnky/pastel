@@ -7,7 +7,7 @@ license = "MIT/Apache-2.0"
 name = "pastel"
 readme = "README.md"
 repository = "https://github.com/sharkdp/pastel"
-version = "0.8.0"
+version = "0.8.1"
 edition = "2018"
 build = "build.rs"
 exclude = ["doc/pastel.gif"]
@@ -19,6 +19,11 @@ rand = "0.7"
 atty = "0.2"
 output_vt100 = "0.1"
 nom = "5"
+url = "2.1.0"
+ureq = { version = "0.8.1", features = ["json"] }
+serde = "*"
+serde_json = "*"
+serde_derive = "*"
 
 # binary-only dependencies (see https://github.com/rust-lang/cargo/issues/1982)
 regex = "1"
